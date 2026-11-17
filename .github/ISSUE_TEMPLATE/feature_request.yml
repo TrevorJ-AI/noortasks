@@ -1,0 +1,42 @@
+name: Feature Request
+description: Suggest an improvement or new feature for NoorTasks.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Check the roadmap in README.md and open issues before filing a duplicate.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Task management & views
+        - Calendar & external sync
+        - Habits, Focus, or Statistics
+        - Quick Add / Recurrence
+        - Android app & widgets
+        - Self-hosting / Docker / CLI
+        - Import / Export
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Use Case
+      description: What workflow or problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: How would you expect it to work?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Optional workarounds or alternative designs you considered.

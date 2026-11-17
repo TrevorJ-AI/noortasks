@@ -1,0 +1,43 @@
+# Copy to your working directory and replace `app` with a globally unique Fly app name.
+app = "my-noortasks"
+primary_region = "ams"
+
+[build]
+  image = "ghcr.io/trevorj-ai/noortasks:latest"
+
+[env]
+  NODE_ENV = "production"
+  HOST = "0.0.0.0"
+  PORT = "8099"
+  NOORTASKS_DB = "/data/noortasks.sqlite"
+  NOORTASKS_DATA_DIR = "/data/files"
+  NOORTASKS_CONFIG = "/data/config.json"
+  NOORTASKS_STATIC_DIR = "/app/apps/web/dist"
+  NOORTASKS_SECURE_COOKIES = "true"
+  NOORTASKS_TRUST_PROXY = "true"
+  TZ = "UTC"
+
+[http_service]
+  internal_port = 8099
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  # Keep 1 machine running if you enable Web Push reminders or NOORTASKS_DAILY_BACKUP=true.
+  # Set to 0 to scale to zero when idle and only sync while connected.
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "15s"
+    method = "GET"
+    path = "/healthz"
+
+[[mounts]]
+  source = "noortasks_data"
+  destination = "/data"
+  initial_size = "1gb"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

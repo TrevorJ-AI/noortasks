@@ -1,0 +1,101 @@
+{
+  "sync_token": "synthetic-token-1",
+  "full_sync": true,
+  "projects": [
+    {
+      "id": "p_inbox",
+      "name": "Inbox",
+      "inbox_project": true,
+      "color": "charcoal",
+      "view_style": "list",
+      "is_deleted": 0,
+      "is_archived": 0
+    },
+    {
+      "id": "p_launch",
+      "name": "Product Launch",
+      "color": "blue",
+      "view_style": "board",
+      "is_deleted": 0,
+      "is_archived": 0
+    }
+  ],
+  "sections": [
+    {
+      "id": "s_prep",
+      "project_id": "p_launch",
+      "name": "Preparation",
+      "section_order": 1,
+      "is_deleted": 0
+    }
+  ],
+  "labels": [
+    { "id": "l_docs", "name": "docs", "color": "green", "is_deleted": 0 },
+    { "id": "l_qa", "name": "qa", "color": "orange", "is_deleted": 0 }
+  ],
+  "items": [
+    {
+      "id": "t_101",
+      "project_id": "p_launch",
+      "section_id": "s_prep",
+      "content": "Publish release notes @docs",
+      "description": "Cover breaking changes and migration steps.",
+      "priority": 4,
+      "labels": ["docs"],
+      "checked": false,
+      "is_deleted": 0,
+      "added_at": "2026-11-10T10:00:00Z",
+      "due": {
+        "date": "2026-11-24T14:00:00",
+        "timezone": "America/New_York",
+        "string": "every month on the 24th",
+        "lang": "en",
+        "is_recurring": true
+      },
+      "duration": { "amount": 45, "unit": "minute" },
+      "deadline": { "date": "2026-11-28" },
+      "responsible_uid": "u_99",
+      "child_order": 1
+    },
+    {
+      "id": "t_102",
+      "project_id": "p_launch",
+      "section_id": "s_prep",
+      "parent_id": "t_101",
+      "content": "Verify changelog links",
+      "description": "",
+      "priority": 2,
+      "labels": ["qa"],
+      "checked": true,
+      "completed_at": "2026-11-14T16:30:00Z",
+      "is_deleted": 0,
+      "child_order": 2
+    },
+    {
+      "id": "t_103",
+      "project_id": "p_inbox",
+      "content": "Unsupported cadence check",
+      "priority": 1,
+      "labels": [],
+      "checked": false,
+      "is_deleted": 0,
+      "due": {
+        "date": "2026-11-21",
+        "timezone": null,
+        "string": "every 4 hours",
+        "lang": "en",
+        "is_recurring": true
+      },
+      "child_order": 1
+    }
+  ],
+  "notes": [
+    {
+      "id": "n_1",
+      "item_id": "t_101",
+      "content": "Copy-edited by product team",
+      "file_attachment": { "file_name": "checklist.pdf", "file_size": 1024 },
+      "is_deleted": 0
+    }
+  ]
+}

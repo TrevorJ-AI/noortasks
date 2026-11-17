@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'">
+  <title>Use on my phone · NoorTasks</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><h1>Use on my phone</h1><p>Your computer is your NoorTasks hub. Keep it awake and NoorTasks running for your phone to sync.</p></header>
+    <p id="setup" hidden>Create your account in NoorTasks first, then return here to pair your phone.</p>
+    <button id="open-app" class="secondary">Open NoorTasks</button>
+    <section aria-labelledby="https-heading">
+      <h2 id="https-heading">Connect with Tailscale</h2>
+      <p>Private HTTPS lets your phone sync away from home and install the web app. Install Tailscale on both devices and sign in to the same tailnet.</p>
+      <p id="ts-status" role="status">Checking Tailscale…</p>
+      <div class="actions"><button id="share" disabled>Enable Tailscale HTTPS</button><button id="refresh" class="secondary">Refresh</button></div>
+      <p class="small">Uses HTTPS port 8443. The Tailscale proxy stays configured after you quit NoorTasks. To remove it, run <code>tailscale serve --https=8443 off</code> on this computer.</p>
+    </section>
+    <section aria-labelledby="lan-heading">
+      <h2 id="lan-heading">On the same Wi-Fi</h2>
+      <p>Local network access uses unencrypted HTTP. Use it only on a trusted home network. It cannot provide web app installation, service workers or Web Push on a phone. Allow NoorTasks through your firewall and never forward this port on your router.</p>
+      <button id="lan" class="secondary">Enable local network access</button>
+    </section>
+    <section aria-labelledby="pair-heading">
+      <h2 id="pair-heading">Pair your phone</h2>
+      <label for="address">Phone server address</label>
+      <select id="address"><option value="">Enable a connection above first</option></select>
+      <p class="small">For Wi-Fi, choose this computer’s address on your home network. Addresses can change when the computer reconnects.</p>
+      <button id="pair" disabled>Show pairing QR</button>
+      <div id="pairing" hidden>
+        <div id="qr"></div>
+        <p id="expiry"></p>
+        <label for="pair-link">Pairing link</label><input id="pair-link" readonly>
+        <p>Scan in the NoorTasks Android app, or open the link in your phone’s browser. Each code works once and expires after 10 minutes. Treat it like a password.</p>
+      </div>
+    </section>
+    <p id="error" role="alert" hidden></p>
+  </main>
+  <script src="phone.js"></script>
+</body>
+</html>

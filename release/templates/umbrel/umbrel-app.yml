@@ -1,0 +1,39 @@
+# Umbrel App Store manifest for NoorTasks
+# Checked against the published Umbrel Apps specification:
+#   https://github.com/getumbrel/umbrel-apps
+#   https://github.com/getumbrel/umbrel-apps/blob/master/syncthing/umbrel-app.yml
+# Note: Umbrel groups "Files & Productivity" under the category key `files`.
+
+manifestVersion: 1
+id: noortasks
+category: files
+name: NoorTasks
+version: "0.1.0"
+tagline: Self-hosted, local-first task manager, calendar, habits, and focus timer
+description: >-
+  NoorTasks is a self-hosted, offline-first personal productivity workspace
+  backed by a single SQLite database and an installable browser PWA. Organize
+  tasks across Smart Lists, folders, Kanban boards, a drag-and-drop Timeline,
+  an Eisenhower Matrix, and seven Calendar views with ICS and OAuth/CalDAV
+  support. Includes habit streaks, a Pomodoro and stopwatch focus timer,
+  countdowns, disk-backed attachments, Web Push reminders, and portable CSV/XLSX
+  backups. Runs as a single lightweight Node container with zero external
+  database services.
+developer: Trevor J and NoorTasks contributors
+website: https://github.com/TrevorJ-AI/noortasks
+dependencies: []
+repo: https://github.com/TrevorJ-AI/noortasks
+support: https://github.com/TrevorJ-AI/noortasks/issues
+port: 8099
+gallery:
+  - 1.png
+  - 2.png
+  - 3.png
+path: ""
+defaultPassword: ""
+releaseNotes: >-
+  Initial v0.1.0 public release of NoorTasks with Smart Lists, Kanban,
+  Timeline, Calendar, Eisenhower Matrix, Habits, Focus timer, Web Push, and
+  CSV backup/import.
+submitter: TrevorJ-AI
+submission: https://github.com/TrevorJ-AI/noortasks

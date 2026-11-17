@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2F6F5E</color>
+    <color name="colorPrimaryDark">#225245</color>
+    <color name="colorAccent">#2F6F5E</color>
+    <color name="widget_bg">#FFFFFF</color>
+    <color name="widget_header_bg">#2F6F5E</color>
+    <color name="widget_text">#1F2329</color>
+    <color name="widget_text_muted">#6B7280</color>
+    <color name="widget_divider">#E5E7EB</color>
+</resources>

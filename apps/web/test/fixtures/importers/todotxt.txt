@@ -1,0 +1,4 @@
+(A) 2026-11-12 Renew domain registration +Infra @ops @billing t:2026-11-18 due:2026-11-25 rec:+1y
+(B) Prepare team retro notes +Work @meeting due:2026-11-22 rec:1w est:45m
+(D) Organize bookmarks +Home +Archive @reading rec:2b
+x 2026-11-15 2026-11-10 (C) File expense report +Finance @admin due:2026-11-14

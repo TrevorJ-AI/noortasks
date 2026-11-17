@@ -1,0 +1,90 @@
+name: Desktop release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desktop-release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop:
+    name: ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux
+          - os: windows-latest
+            target: win
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
+      electron_config_cache: ${{ github.workspace }}/.cache/electron
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Download pinned Electron runtime
+        run: node apps/desktop/node_modules/electron/install.js
+      - name: Match desktop version to release tag
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const path = 'apps/desktop/package.json';
+          const pkg = JSON.parse(readFileSync(path, 'utf8'));
+          const version = process.env.GITHUB_REF_NAME.replace(/^v/, '');
+          if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) throw new Error('Invalid release version');
+          pkg.version = version;
+          writeFileSync(path, JSON.stringify(pkg, null, 2) + '\n');
+          JS
+      - name: Build installer
+        shell: bash
+        run: pnpm --filter @noortasks/desktop package:${{ matrix.target }} --config.electronDownload.cache="$ELECTRON_CACHE"
+      - name: Run desktop tests
+        run: pnpm --filter @noortasks/desktop test
+      - name: Install Linux smoke dependencies
+        if: matrix.target == 'linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb libgtk-3-0 libnss3 libasound2t64
+      - name: Smoke test packaged AppImage
+        if: matrix.target == 'linux'
+        shell: bash
+        env:
+          NOORTASKS_SMOKE_NO_SANDBOX: "1"
+        run: xvfb-run -a pnpm --filter @noortasks/desktop smoke "$PWD"/apps/desktop/dist/installers/*.AppImage
+      - name: Checksums
+        shell: bash
+        run: |
+          cd apps/desktop/dist/installers
+          for file in *.AppImage *.exe; do
+            [ -f "$file" ] && sha256sum "$file" > "$file.sha256"
+          done
+          true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: noortasks-desktop-${{ matrix.target }}
+          path: |
+            apps/desktop/dist/installers/*.AppImage
+            apps/desktop/dist/installers/*.exe
+            apps/desktop/dist/installers/*.sha256
+      - name: Attach installers to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            apps/desktop/dist/installers/*.AppImage
+            apps/desktop/dist/installers/*.exe
+            apps/desktop/dist/installers/*.sha256

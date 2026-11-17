@@ -1,0 +1,57 @@
+{
+  "kind": "tasks#taskLists",
+  "items": [
+    {
+      "kind": "tasks#tasks",
+      "id": "gt_list_1",
+      "title": "My Tasks",
+      "items": [
+        {
+          "kind": "tasks#task",
+          "id": "gt_task_1",
+          "title": "Plan winter trip",
+          "notes": "Compare train and ferry times.",
+          "status": "needsAction",
+          "due": "2026-12-01T00:00:00.000Z",
+          "position": "00000000000000000001",
+          "links": [
+            { "type": "email", "description": "Ferry confirmation", "link": "https://mail.example.invalid/msg/42" }
+          ]
+        },
+        {
+          "kind": "tasks#task",
+          "id": "gt_task_2",
+          "title": "Book cabin seats",
+          "status": "completed",
+          "parent": "gt_task_1",
+          "completed": "2026-11-14T11:20:00.000Z",
+          "position": "00000000000000000002"
+        },
+        {
+          "kind": "tasks#task",
+          "id": "gt_task_deleted",
+          "title": "Old cancelled task",
+          "status": "needsAction",
+          "deleted": true,
+          "position": "00000000000000000003"
+        }
+      ]
+    },
+    {
+      "kind": "tasks#tasks",
+      "id": "gt_list_2",
+      "title": "Travel",
+      "items": [
+        {
+          "kind": "tasks#task",
+          "id": "gt_task_3",
+          "title": "Renew passport",
+          "notes": "Bring two photos",
+          "status": "needsAction",
+          "due": "2026-12-15T00:00:00.000Z",
+          "position": "00000000000000000001"
+        }
+      ]
+    }
+  ]
+}

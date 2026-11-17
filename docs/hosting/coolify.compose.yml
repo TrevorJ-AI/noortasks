@@ -1,0 +1,42 @@
+services:
+  noortasks:
+    image: ghcr.io/trevorj-ai/noortasks:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    expose:
+      - "8099"
+    volumes:
+      - noortasks_data:/data
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8099"
+      NOORTASKS_DB: "/data/noortasks.sqlite"
+      NOORTASKS_DATA_DIR: "/data/files"
+      NOORTASKS_CONFIG: "/data/config.json"
+      NOORTASKS_STATIC_DIR: "/app/apps/web/dist"
+      NOORTASKS_SECURE_COOKIES: "true"
+      NOORTASKS_TRUST_PROXY: "true"
+      # Optional: daily SQLite + CSV snapshots in /data/backups (keeps 7 days)
+      # NOORTASKS_DAILY_BACKUP: "true"
+      # Optional: automatic Web Push VAPID keys in /data/vapid.json
+      # NOORTASKS_VAPID_FILE: "/data/vapid.json"
+      # NOORTASKS_AUTO_VAPID: "true"
+      # NOORTASKS_VAPID_SUBJECT: "mailto:admin@example.com"
+      TZ: "UTC"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:' + (process.env.PORT || 8099) + '/healthz').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  noortasks_data:

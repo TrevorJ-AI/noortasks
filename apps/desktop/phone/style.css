@@ -1,0 +1,24 @@
+/* Match the existing app: system sans, green actions and quiet white surfaces. */
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.6 var(--font); background: var(--bg); color: var(--text); }
+main { max-width: 600px; padding: 28px; margin: 0 auto; }
+h1 { font-size: 24px; line-height: 1.25; margin: 0 0 12px; letter-spacing: -.02em; }
+h2 { font-size: 18px; margin: 0 0 10px; }
+p { margin: 8px 0 16px; color: var(--text-2); text-wrap: pretty; }
+section { border-top: 1px solid var(--border); padding-top: 22px; margin-top: 24px; }
+button, select, input { font: inherit; border-radius: var(--r-m); padding: 9px 12px; min-height: 42px; }
+button { border: 1px solid transparent; background: var(--accent); color: var(--on-accent); cursor: pointer; font-weight: 600; }
+button:hover { filter: brightness(.94); }
+button:active { filter: brightness(.87); }
+button:disabled { opacity: .55; cursor: default; }
+button.secondary { background: var(--surface-2); color: var(--text); border-color: var(--border); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+select, input { display: block; width: 100%; background: var(--surface); color: var(--text); border: 1px solid #929292; margin: 6px 0 14px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.small { font-size: 12px; margin-top: 12px; }
+code { overflow-wrap: anywhere; }
+#error { position: sticky; bottom: 12px; padding: 12px; background: #fff1f1; color: #962724; border: 1px solid #d59b99; border-radius: var(--r-m); }
+#qr { margin: 20px 0 10px; }
+#qr svg { width: 220px; max-width: 100%; height: auto; display: block; }
+#expiry { font-weight: 600; color: var(--text); }
+@media (max-width: 440px) { main { padding: 20px; } }

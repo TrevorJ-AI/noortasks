@@ -1,0 +1,4 @@
+External ID,Task Name,Project,Board Stage,Labels,Importance,State,Start,Due,TZ,Schedule,Details,Parent Task,Story Points
+ext-1,Design schema,Backend,In Progress,"api, db",High,open,2026-11-21 10:00,2026-11-21 12:00,Europe/London,every weekday,Include migration notes,,5
+ext-2,Write schema tests,Backend,In Progress,qa,Medium,open,2026-11-22,2026-11-22,Europe/London,,Cover edge cases,ext-1,3
+ext-3,Archive legacy job,Ops,,cleanup,Low,done,2026-11-05,2026-11-05,UTC,every 2 hours,Old cron retired,,2

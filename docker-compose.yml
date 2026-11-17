@@ -1,0 +1,67 @@
+services:
+  noortasks:
+    image: ghcr.io/TrevorJ-AI/noortasks:latest
+    # To build locally from source instead of pulling:
+    # build: .
+    container_name: noortasks
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - "8099:8099"
+    volumes:
+      - noortasks_data:/data
+    environment:
+      # Server bind address and port inside the container
+      HOST: "0.0.0.0"
+      PORT: "8099"
+
+      # Persistent SQLite database, attachments directory, and auth config inside /data
+      NOORTASKS_DB: "/data/noortasks.sqlite"
+      NOORTASKS_DATA_DIR: "/data/files"
+      NOORTASKS_CONFIG: "/data/config.json"
+      NOORTASKS_STATIC_DIR: "/app/apps/web/dist"
+
+      # Sign-in: on an empty /data volume, NoorTasks opens a one-time setup page in the browser
+      # to create the admin account, choose a server name, and show a phone pairing QR code.
+      # For headless first boot instead, set NOORTASKS_PASSPHRASE (minimum 8 characters) or mount
+      # /data/config.json (see docs/multi-user.md for "Sign in with Google" / OIDC).
+      # NOORTASKS_PASSPHRASE: "${NOORTASKS_PASSPHRASE:-}"
+      # Alternatively mount a secret file and set:
+      # NOORTASKS_PASSPHRASE_FILE: "/run/secrets/noortasks_passphrase"
+
+      # Optional: daily SQLite + CSV backup export inside /data/backups (keeps 7 days, off by default)
+      # NOORTASKS_DAILY_BACKUP: "true"
+
+      # Optional: Web Push VAPID key file (enable NOORTASKS_AUTO_VAPID=true to generate on first start)
+      # NOORTASKS_VAPID_FILE: "/data/vapid.json"
+      # NOORTASKS_AUTO_VAPID: "true"
+      # NOORTASKS_VAPID_SUBJECT: "mailto:admin@example.com"
+
+      # Optional: Google / Outlook calendar OAuth client config JSON
+      # NOORTASKS_CALENDAR_OAUTH_FILE: "/data/calendar-oauth.json"
+
+      # Set to "true" when served behind an HTTPS reverse proxy (Caddy, Nginx, Traefik)
+      # NOORTASKS_SECURE_COOKIES: "true"
+      # NOORTASKS_TRUST_PROXY: "true"
+
+      # Optional: Disable authentication for local-only evaluation (NOT recommended on shared networks)
+      # NOORTASKS_NO_AUTH: "false"
+
+      TZ: "UTC"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:' + (process.env.PORT || 8099) + '/healthz').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  noortasks_data:

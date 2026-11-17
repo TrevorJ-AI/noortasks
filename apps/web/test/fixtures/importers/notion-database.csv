@@ -1,0 +1,5 @@
+Name,Status,Tags,Priority,Due,Assignee,Parent item,Files & media,Story Points
+Launch public docs site,In progress,"Docs, Launch",High,"November 20, 2026 → November 25, 2026",Sam Example,,https://assets.example.invalid/wireframe.png,5
+Write hosting guides,Done,Docs,Medium,"November 18, 2026 2:30 PM",,Launch public docs site,,3
+Deprecate legacy script,Won't do,Maintenance,Low,,,,,1
+Verify export guard,Not started,QA,,2026-11-28,,"Launch public docs site (https://www.notion.so/launch-public-docs-site-0123456789abcdef0123456789abcdef)",,2

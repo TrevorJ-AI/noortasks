@@ -1,0 +1,5 @@
+Title,Category,Notes,Due Date,Priority,Status,Archived Date,Subtasks,Assigned To
+Renew SSL certificate,Operations,Check Caddy auto-renewal logs,2026-11-10 09:00,High,Archived,2026-11-11,,
+Order office supplies,Errands,Restock stationery,2026-11-12,Normal,Completed,2026-11-12,Buy pens; Buy notebooks,
+Review Q4 budget,Finance,,2026-11-14,Low,Open,,,Jamie Example
+Cancel unused trial,Inbox,Dropped legacy subscription,,,Won't Do,2026-11-15,,

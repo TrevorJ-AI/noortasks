@@ -1,0 +1,70 @@
+name: Bug Report
+description: Report a reproducible bug in NoorTasks (web, server, Docker, or Android).
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue! Please check existing open issues first and never paste passphrases, session cookies, or private OAuth secrets.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of NoorTasks is affected?
+      options:
+        - Web PWA (apps/web)
+        - Server / API (apps/server)
+        - Docker / Compose
+        - Android APK (apps/android)
+        - Quick Add / Recurrence engine
+        - Import / Export
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: NoorTasks Version or Commit
+      description: Release tag (e.g. v0.1.0), Docker image digest, or git commit SHA.
+      placeholder: "v0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser or Android version, Node version, or reverse proxy setup.
+      placeholder: "Ubuntu 24.04, Docker Compose, Firefox 132 / Android 15"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Clear description of the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to reproduce the issue.
+      value: |
+        1. Go to '...'
+        2. Click '...'
+        3. Observe '...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or Error Output
+      description: Redact any personal data, tokens, or private URLs before pasting.
+      render: text

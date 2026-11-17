@@ -1,0 +1,10 @@
+TYPE,CONTENT,DESCRIPTION,PRIORITY,INDENT,AUTHOR,RESPONSIBLE,DATE,DATE_LANG,TIMEZONE,DURATION,DEADLINE
+section,Planning,,,,,,,,,,
+task,Finalize Q4 roadmap @planning @urgent,Review milestones with engineering leads,1,1,Alex (101),Sam (102),2026-11-20 09:30,en,America/New_York,60,2026-11-25
+task,Draft architecture memo,Outline data sync changes,2,2,Alex (101),,,en,America/New_York,,
+task,Benchmark Dexie batch writes,Check 1000-row import latency,3,3,Alex (101),,,en,,,
+note,Remember to compare Chrome and Firefox timings,,,,,,,,,,
+task,Weekly standup prep @sync,Update team status sheet,2,1,Alex (101),,"every 2 weeks on Monday, Wednesday at 9am",en,Europe/Amsterdam,30,
+section,Execution,,,,,,,,,,
+task,Rotate staging keys @ops,Follow runbook steps,4,1,,,every! 3 days,en,UTC,,
+task,Check hourly queue metrics,Verify alert thresholds,1,1,,,every 3 hours,en,UTC,,

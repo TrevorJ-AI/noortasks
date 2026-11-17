@@ -1,0 +1,57 @@
+/* M4 summary screen: a calm report page */
+.sum-screen { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.sum-toolbar { flex: none; padding: 0 24px 0 20px; border-bottom: 1px solid var(--border); }
+.sum-head { gap: 8px; }
+.sum-template-btn, .sum-export-btn { display: inline-flex; align-items: center; gap: 6px; }
+.sum-template-btn { max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+.sum-filters { display: flex; align-items: center; gap: 8px; padding: 0 0 12px; flex-wrap: wrap; }
+.sum-chip { gap: 6px; }
+.sum-scroll { flex: 1; overflow-y: auto; background: var(--surface-2); padding: 28px 24px 80px; }
+.sum-report { max-width: 760px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-l); padding: 36px 44px 44px; }
+.sum-title { width: 100%; border: 0; outline: none; background: transparent; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; padding: 0; color: var(--text); }
+.sum-title:focus { box-shadow: 0 2px 0 var(--accent); }
+.sum-meta { color: var(--text-3); font-size: var(--fs-s); margin: 6px 0 22px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.sum-reset-title { margin-left: 8px; }
+.sum-empty { color: var(--text-3); padding: 40px 0; text-align: center; }
+.sum-group { margin-top: 22px; }
+.sum-group-title { font-size: var(--fs-m); font-weight: 650; margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 8px; }
+.sum-count { color: var(--text-3); font-weight: 400; font-size: var(--fs-s); }
+.sum-list { list-style: none; margin: 0; padding: 0; }
+.sum-item { display: flex; align-items: baseline; gap: 10px; padding: 6px 0; line-height: 1.45; flex-wrap: wrap; }
+.sum-mark { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid var(--text-3); flex: none; position: relative; top: 1px; }
+.sum-mark.done { background: var(--text-3); }
+.sum-mark.done::after { content: ""; position: absolute; left: 3px; top: 0; width: 3px; height: 6px; border: solid var(--surface); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+.sum-item-title { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.sum-item.done .sum-item-title { color: var(--text-2); }
+.sum-item-meta { color: var(--text-3); font-size: var(--fs-s); white-space: pre; }
+.sum-pop { min-width: 230px; padding: 8px; }
+.sum-pop-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 8px 6px; }
+.sum-pop .seg { margin: 0 6px 8px; }
+.sum-field-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; gap: 16px; }
+.sum-custom { display: flex; flex-direction: column; gap: 6px; padding: 6px 10px 8px; }
+.sum-templates { width: 290px; }
+.sum-tpl-row { display: flex; align-items: center; gap: 4px; padding: 2px 4px; border-radius: var(--r-m); }
+.sum-tpl-row:hover { background: var(--hover); }
+.sum-tpl-row.on .sum-tpl-name { color: var(--accent); }
+.sum-tpl-name { flex: 1; text-align: left; padding: 6px 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sum-tpl-new { display: flex; gap: 6px; padding: 8px 4px 2px; border-top: 1px solid var(--border); margin-top: 6px; }
+.sum-tpl-row .field, .sum-tpl-new .field { min-width: 0; }
+
+@media (max-width: 760px) {
+  .sum-toolbar { padding: 0 14px; }
+  .sum-head { padding-left: 34px; }
+  .sum-template-btn { max-width: 120px; }
+  .sum-scroll { padding: 12px 10px 60px; }
+  .sum-report { padding: 22px 18px 28px; }
+  .sum-title { font-size: 21px; }
+  .sum-item-meta { white-space: normal; }
+}
+
+@media print {
+  body.print-summary * { visibility: hidden; }
+  body.print-summary .sum-report, body.print-summary .sum-report * { visibility: visible; }
+  body.print-summary .sum-report { position: absolute; left: 0; top: 0; width: 100%; max-width: none; border: 0; padding: 0; }
+  body.print-summary .sum-scroll { overflow: visible; }
+  body.print-summary .sum-reset-title { display: none; }
+}
+@media (max-width: 760px) { .sum-btn-label { display: none; } }

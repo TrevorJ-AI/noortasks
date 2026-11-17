@@ -1,0 +1,32 @@
+# Umbrel App Store Docker Compose definition for NoorTasks
+# Checked against the published Umbrel Apps specification:
+#   https://github.com/getumbrel/umbrel-apps
+# Note: Replace image digest before submitting a PR to getumbrel/umbrel-apps.
+
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: noortasks_web_1
+      APP_PORT: 8099
+      # NoorTasks enforces its own passphrase session + CSRF auth
+      PROXY_AUTH_ADD: "false"
+
+  web:
+    image: ghcr.io/TrevorJ-AI/noortasks:0.1.0
+    restart: on-failure
+    user: "1000:1000"
+    stop_grace_period: 30s
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8099"
+      NOORTASKS_DB: "/data/noortasks.sqlite"
+      NOORTASKS_DATA_DIR: "/data/files"
+      NOORTASKS_CONFIG: "/data/config.json"
+      NOORTASKS_STATIC_DIR: "/app/apps/web/dist"
+      NOORTASKS_PASSPHRASE: "${APP_SEED:-noortasks-change-me}"
+      NOORTASKS_VAPID_FILE: "/data/vapid.json"
+      NOORTASKS_AUTO_VAPID: "true"

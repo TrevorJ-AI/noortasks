@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NoorTasks</string>
+    <string name="title_activity_main">NoorTasks</string>
+    <string name="package_name">app.noortasks</string>
+    <string name="custom_url_scheme">app.noortasks</string>
+    <string name="shortcut_quick_add_short">Quick Add</string>
+    <string name="shortcut_quick_add_long">Add a new task</string>
+    <string name="tile_quick_add_label">Quick Add</string>
+    <string name="widget_today_name">Today</string>
+    <string name="widget_today_description">Today and overdue tasks from NoorTasks</string>
+    <string name="widget_today_empty">No tasks for today</string>
+</resources>

@@ -1,0 +1,74 @@
+/* M8: sign-in, members, sharing, assigning, mentions, view-only shared lists */
+
+/* sign-in card: quiet, one primary action */
+.signin-card h2 { margin: 2px 0 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.signin-sub { margin: -6px 0 10px; color: var(--text-3); font-size: var(--fs-s); }
+.signin-oidc { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 40px; font-weight: 500; text-decoration: none; color: var(--text); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); }
+.signin-oidc:hover { background: var(--hover); }
+.signin-or { display: flex; align-items: center; gap: 10px; width: 100%; color: var(--text-3); font-size: var(--fs-s); }
+.signin-or::before, .signin-or::after { content: ""; flex: 1; border-top: 1px solid var(--border); }
+.signin-form { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.signin-form .btn { height: 38px; }
+.signin-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
+.signin-switch { align-self: center; margin-top: 2px; }
+.signin-card .error { text-align: center; line-height: 1.4; }
+.setup-card { width: min(380px, calc(100vw - 48px)); }
+.pairing-panel { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; text-align: center; }
+.pairing-head { display: flex; align-items: center; gap: 8px; }
+.pairing-head h2 { margin: 0; }
+.pairing-qr-box { padding: 10px; border-radius: var(--r-m); background: #ffffff; border: 1px solid var(--border); line-height: 0; }
+.pairing-field { width: 100%; text-align: left; gap: 4px; }
+.pairing-hint { text-align: left; width: 100%; line-height: 1.35; }
+.pairing-code-box { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; padding: 10px; border-radius: var(--r-m); background: var(--surface-2); }
+.pairing-code-text { font-size: 11px; word-break: break-all; max-height: 54px; overflow: auto; user-select: all; }
+
+/* member avatars (initials) */
+.mbr-avatar { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); color: var(--text-2); font-weight: 600; font-size: 11px; object-fit: cover; }
+
+/* Settings > Members */
+.members { display: flex; flex-direction: column; gap: 22px; }
+.mbr-section { display: flex; flex-direction: column; gap: 8px; }
+.mbr-h { margin: 0; font-size: var(--fs-m, 14px); font-weight: 600; display: flex; align-items: baseline; gap: 8px; }
+.mbr-sub { margin: 8px 0 0; font-weight: 500; }
+.mbr-invite { display: flex; gap: 8px; }
+.mbr-invite .btn { display: inline-flex; align-items: center; gap: 6px; }
+.mbr-code { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: var(--r-m); background: var(--surface-2); font-size: var(--fs-s); word-break: break-all; }
+.mbr-list { list-style: none; margin: 0; padding: 0; }
+.mbr-row { display: flex; align-items: center; gap: 10px; min-height: 48px; border-bottom: 1px solid var(--border); }
+.mbr-row:last-child { border-bottom: 0; }
+.mbr-row.removed { opacity: 0.7; }
+.mbr-who { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.mbr-who > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mbr-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; background: var(--active); color: var(--accent); font-size: 11px; font-weight: 500; white-space: nowrap; }
+.mbr-badge.off { background: var(--surface-2); color: var(--text-3); }
+
+/* share dialog */
+.share-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.share-head h3 { margin: 0; }
+.share-add { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0 4px; }
+.share-add .select:first-child { flex: 1; min-width: 160px; justify-content: space-between; }
+.share-list { margin: 6px 0 12px; max-height: 50vh; overflow: auto; }
+
+/* detail: assign + view-only */
+.ro-fs { display: contents; border: 0; margin: 0; padding: 0; min-width: 0; }
+.assign-btn { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--text-3); }
+.assign-btn:hover:not(:disabled) { background: var(--hover); color: var(--text); }
+.assign-btn:disabled { opacity: 0.5; }
+.ro-banner { margin: 0 16px 6px; font-size: var(--fs-s); }
+.detail-pane fieldset:disabled .detail-title { color: var(--text-2); }
+
+/* comments: @mention hints */
+.mention-hints { display: flex; flex-direction: column; margin: 0 8px 4px; border: 1px solid var(--border); border-radius: var(--r-m); background: var(--surface); overflow: hidden; }
+.mention-hint { text-align: left; padding: 7px 10px; display: flex; gap: 8px; align-items: baseline; }
+.mention-hint:hover, .mention-hint:first-child { background: var(--hover); }
+.cmt-ro { padding: 8px 12px; }
+
+@media (max-width: 600px) {
+  .signin-card { width: min(320px, calc(100vw - 48px)); }
+  .mbr-invite { flex-direction: column; }
+  .share-add { flex-direction: column; align-items: stretch; }
+  .share-add .select:first-child { flex: none; }
+}
+.mbr-section > p { margin: 0; }
+.share-add .select { white-space: nowrap; }
+.share-add .select span { overflow: hidden; text-overflow: ellipsis; }

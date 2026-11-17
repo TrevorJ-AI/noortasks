@@ -1,0 +1,4 @@
+Title,Notes,Area,Project,Heading,Tags,When,Deadline,Status,Checklist
+Draft migration notes,Compare SQLite backups,Work,Release 0.2,Docs,writing; docs,2026-11-21,2026-11-24,open,[x] Outline sections; [ ] Add examples
+Review travel packing list,Winter layers,Personal,,,packing,Someday,,open,
+Drop legacy sync flag,Replaced by field patches,Work,Release 0.2,Docs,cleanup,,,canceled,

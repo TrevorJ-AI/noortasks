@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Unraid Community Applications repository maintainer profile.
+  Checked against the published Unraid CA format docs:
+    https://ca.unraid.net/submit/help/repository-xml
+-->
+<Maintainer>
+  <Icon>https://raw.githubusercontent.com/TrevorJ-AI/noortasks/main/apps/web/public/icon.svg</Icon>
+  <Profile>Independent open-source maintainer of NoorTasks, a self-hosted local-first task manager.</Profile>
+  <DonateLink>https://ko-fi.com/trevorj_ai</DonateLink>
+  <DonateText>Support NoorTasks on Ko-fi</DonateText>
+  <WebPage>https://github.com/TrevorJ-AI/noortasks</WebPage>
+</Maintainer>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Unraid Community Applications Docker template for NoorTasks.
+  Checked against the published Unraid CA format docs:
+    https://ca.unraid.net/submit/help/docker-template
+    https://ca.unraid.net/submit/help/repository-xml
+-->
+<Container version="2">
+  <Name>NoorTasks</Name>
+  <Repository>ghcr.io/TrevorJ-AI/noortasks:latest</Repository>
+  <Registry>https://github.com/TrevorJ-AI/noortasks/pkgs/container/noortasks</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/TrevorJ-AI/noortasks/issues</Support>
+  <Project>https://github.com/TrevorJ-AI/noortasks</Project>
+  <Overview>NoorTasks is a self-hosted, local-first personal task manager, calendar, habit tracker, and focus timer backed by SQLite and an offline-capable PWA. Stores tasks, checklists, attachments, habits, Pomodoro sessions, and calendar integrations in /data with no external database container required.</Overview>
+  <Category>Productivity</Category>
+  <WebUI>http://[IP]:[PORT:8099]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/TrevorJ-AI/noortasks/main/release/templates/unraid/noortasks.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/TrevorJ-AI/noortasks/main/apps/web/public/icon.svg</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>Support NoorTasks on Ko-fi</DonateText>
+  <DonateLink>https://ko-fi.com/trevorj_ai</DonateLink>
+  <Requires/>
+  <Config Name="Web UI Port" Target="8099" Default="8099" Mode="tcp" Description="HTTP port for the NoorTasks web UI and API" Type="Port" Display="always" Required="true" Mask="false">8099</Config>
+  <Config Name="Data Directory" Target="/data" Default="/mnt/user/appdata/noortasks" Mode="rw" Description="Persistent SQLite database, uploaded attachments, and config files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/noortasks</Config>
+  <Config Name="Initial Passphrase" Target="NOORTASKS_PASSPHRASE" Default="" Mode="" Description="Initial sign-in passphrase (minimum 8 characters). Hashed to /data/config.json on first boot; can be cleared afterward." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Secure Cookies" Target="NOORTASKS_SECURE_COOKIES" Default="false" Mode="" Description="Set to true when serving NoorTasks exclusively over HTTPS via a reverse proxy" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Trust Proxy" Target="NOORTASKS_TRUST_PROXY" Default="false" Mode="" Description="Set to true behind a reverse proxy so sign-in rate limiting reads X-Forwarded-For" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Auto-generate VAPID Keys" Target="NOORTASKS_AUTO_VAPID" Default="false" Mode="" Description="Set to true alongside NOORTASKS_VAPID_FILE=/data/vapid.json to auto-generate Web Push keys on first start" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="VAPID Key File" Target="NOORTASKS_VAPID_FILE" Default="" Mode="" Description="Optional path inside /data for Web Push VAPID keys (for example /data/vapid.json)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Timezone" Target="TZ" Default="UTC" Mode="" Description="Container timezone (IANA name, for example Europe/Amsterdam)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+</Container>

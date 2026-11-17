@@ -1,0 +1,89 @@
+# CasaOS App Store Docker Compose template for NoorTasks
+# Checked against the published CasaOS App Store format:
+#   https://github.com/IceWhaleTech/CasaOS-AppStore
+#   https://github.com/IceWhaleTech/CasaOS-AppStore/blob/main/category-list.json
+
+name: noortasks
+
+services:
+  noortasks:
+    image: ghcr.io/TrevorJ-AI/noortasks:0.1.0
+    container_name: noortasks
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - target: 8099
+        published: "8099"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/noortasks/data
+        target: /data
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8099"
+      NOORTASKS_DB: "/data/noortasks.sqlite"
+      NOORTASKS_DATA_DIR: "/data/files"
+      NOORTASKS_CONFIG: "/data/config.json"
+      NOORTASKS_STATIC_DIR: "/app/apps/web/dist"
+      NOORTASKS_PASSPHRASE: "change-this-passphrase"
+      NOORTASKS_VAPID_FILE: "/data/vapid.json"
+      NOORTASKS_AUTO_VAPID: "true"
+      TZ: "UTC"
+    x-casaos:
+      envs:
+        - container: NOORTASKS_PASSPHRASE
+          description:
+            en_US: Initial sign-in passphrase (minimum 8 characters). Used only on first boot if config.json does not exist.
+        - container: NOORTASKS_AUTO_VAPID
+          description:
+            en_US: Automatically generate Web Push VAPID keys on first start (true or false).
+        - container: NOORTASKS_SECURE_COOKIES
+          description:
+            en_US: Set to true if serving NoorTasks strictly over HTTPS behind a reverse proxy.
+        - container: TZ
+          description:
+            en_US: Container timezone (IANA name, for example Europe/Amsterdam).
+      ports:
+        - container: "8099"
+          description:
+            en_US: NoorTasks web interface and HTTP API port.
+      volumes:
+        - container: /data
+          description:
+            en_US: Persistent storage for SQLite database, uploaded attachments, and config files.
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  author: TrevorJ-AI
+  category: Productivity
+  description:
+    en_US: >-
+      NoorTasks is a self-hosted, local-first personal task manager, calendar,
+      habit tracker, and focus timer backed by SQLite and an offline-capable
+      PWA. Includes Kanban boards, Timeline, Eisenhower Matrix, recurring
+      schedules, ICS/CalDAV/OAuth calendars, Web Push reminders, and CSV
+      backups in a single lightweight Node container.
+  developer: Trevor J and NoorTasks contributors
+  icon: https://raw.githubusercontent.com/TrevorJ-AI/noortasks/main/apps/web/public/icon.svg
+  id: app.noortasks
+  index: /
+  main: noortasks
+  port_map: "8099"
+  scheme: http
+  tagline:
+    en_US: Self-hosted, local-first task manager, calendar, habits, and focus timer
+  thumbnail: https://raw.githubusercontent.com/TrevorJ-AI/noortasks/main/docs/screenshots/today.png
+  tips:
+    before_install:
+      en_US: |
+        Set a custom `NOORTASKS_PASSPHRASE` (minimum 8 characters) before starting.
+        Once `/data/config.json` is generated on first boot, you can clear `NOORTASKS_PASSPHRASE` in container settings.
+  title:
+    en_US: NoorTasks
+  version: "0.1.0"
+  update_at: "2026-11-16"
+  release_notes:
+    en_US: Initial v0.1.0 release.

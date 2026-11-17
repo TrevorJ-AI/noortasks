@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Vulnerability Report
+    url: https://github.com/TrevorJ-AI/noortasks/security/advisories/new
+    about: Please report security issues privately using GitHub Security Advisories.
+  - name: Discussions & Questions
+    url: https://github.com/TrevorJ-AI/noortasks/discussions
+    about: Ask installation, reverse-proxy, or workflow questions here instead of opening a bug report.
